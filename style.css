@@ -1,0 +1,241 @@
+:root {
+  --bg: #0f172a;
+  --card: #111827;
+  --muted: #94a3b8;
+  --text: #e5e7eb;
+  --accent: #22d3ee;
+  --accent-2: #38bdf8;
+  --danger: #f87171;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+      1200px 600px at 70% -10%,
+      rgba(34, 211, 238, 0.18),
+      transparent 50%
+    ),
+    radial-gradient(
+      900px 500px at -10% 110%,
+      rgba(56, 189, 248, 0.18),
+      transparent 55%
+    ),
+    var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, Helvetica, Arial;
+  color: var(--text);
+}
+
+.card {
+  width: min(680px, 92vw);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  margin: 0 0 6px;
+}
+
+p.sub {
+  margin: 0.25rem 0 1.25rem;
+  color: var(--muted);
+}
+
+.progress-wrap {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0 22px;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.35s ease;
+}
+
+.step {
+  display: none;
+  animation: fade 0.25s ease;
+}
+
+.step.active {
+  display: block;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.35;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+label {
+  display: block;
+  margin: 14px 0 8px;
+  font-size: 0.98rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  outline: none;
+  font-size: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+}
+
+.row {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.btn.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #00131a;
+}
+
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 8px;
+  color: var(--danger);
+  font-size: 0.92rem;
+  display: none;
+}
+
+.error.show {
+  display: block;
+}
+
+.summary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.greeting {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 6px 0 0;
+  background: linear-gradient(90deg, #fff, #c6f6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+footer {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.link-board {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #c6f6ff;
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.radio {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.ok {
+  background: rgba(34, 197, 94, 0.15);
+  color: #d1fae5;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.err {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fecaca;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-top: 12px;
+}
