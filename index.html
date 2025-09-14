@@ -1,423 +1,194 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ricordi Tesi Fabio</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <div class="card">
-    <h1>Hey Ciao 👋</h1>
-    <p class="sub">Che ne dici di creare un ricordo per il futuro.</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ricordi Tesi Fabio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="card">
+      <h1>Hey Ciao 👋</h1>
+      <p class="sub">Che ne dici di creare un ricordo per il futuro.</p>
 
-    <!-- Barra di progresso -->
-    <div class="progress-wrap"><div class="progress" id="progress" style="width:0%"></div></div>
-    <a class="btn primary" style="display: flex; justify-self: center; margin-bottom: 10px;" href="bacheca.html">
-      Vai alla bacheca
-    </a>
+      <!-- Barra di progresso -->
+      <div class="progress-wrap">
+        <div class="progress" id="progress" style="width: 0%"></div>
+      </div>
+      <a
+        class="btn primary"
+        style="display: flex; justify-self: center; margin-bottom: 10px"
+        href="bacheca.html"
+      >
+        Vai alla bacheca
+      </a>
 
-    <!-- IFRAME nascosto per il POST al Form principale -->
-    <iframe name="hidden_iframe" id="hidden_iframe" class="hidden"></iframe>
+      <!-- IFRAME nascosto per il POST al Form principale -->
+      <iframe name="hidden_iframe" id="hidden_iframe" class="hidden"></iframe>
 
-    <!-- FORM principale (testo) verso Google Forms -->
-    <form id="gform"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSeiyzJ0qeOlSHkIkJGVZFWgPHZ4s_5w3dlSfdevs2TXCCGHsA/formResponse"
-      method="POST" target="hidden_iframe" novalidate>
-
-      <!-- STEP 1: Nome e Cognome -->
-      <section class="step active" data-step="1">
-        <div class="row">
-          <div>
-            <label for="nome">Qual è il tuo Nome? *</label>
-            <input id="nome" name="entry.1591633300" type="text" autocomplete="given-name" required />
-          </div>
-          <div>
-            <label for="cognome">Qual è il tuo Cognome? *</label>
-            <input id="cognome" name="entry.326955045" type="text" autocomplete="family-name" required />
-          </div>
-        </div>
-        <div class="error" id="err-step1">Inserisci Nome e Cognome.</div>
-        <div class="actions">
-          <button type="button" class="btn secondary" disabled>Indietro</button>
-          <button type="button" class="btn primary" id="next1">Avanti</button>
-        </div>
-      </section>
-
-      <!-- STEP 2: Come mi conosci -->
-      <section class="step" data-step="2">
-        <label>Come mi conosci?</label>
-        <label class="radio"><input type="radio" name="entry.896447326" value="Familiare"> Familiare</label>
-        <label class="radio"><input type="radio" name="entry.896447326" value="Amico"> Amico</label>
-        <label class="radio"><input type="radio" name="entry.896447326" value="Non lo so nemmeno io"> Non lo so nemmeno io</label>
-        <label class="radio"><input type="radio" name="entry.896447326" value="__other_option__" id="optAltro"> Altro</label>
-        <input type="text" id="altroTxt" name="entry.896447326.other_option_response" class="hidden" placeholder="Specifica…"/>
-        <input type="hidden" name="entry.896447326_sentinel">
-        <div class="error" id="err-step2">Scegli un’opzione (specifica “Altro” se selezionato).</div>
-        <div class="actions">
-          <button type="button" class="btn secondary" id="back2">Indietro</button>
-          <button type="button" class="btn primary" id="next2">Avanti</button>
-        </div>
-      </section>
-
-      <!-- STEP 3: SOLO Messaggio -->
-      <section class="step" data-step="3">
-        <label for="ricordo">Mi lasci un ricordo di stasera?</label>
-        <textarea id="ricordo" name="entry.1696159737" placeholder="Scrivi qualcosa…"></textarea>
-
-        <!-- campi tecnici minimi -->
-        <input type="hidden" name="fvv" value="1" />
-        <input type="hidden" name="pageHistory" value="0" />
-
-        <div class="error" id="err-step3"></div>
-        <div class="actions">
-          <button type="button" class="btn secondary" id="back3">Indietro</button>
-          <button type="button" class="btn primary" id="next3">Avanti</button>
-        </div>
-      </section>
-
-      <!-- STEP 4: Foto -->
-      <section class="step" data-step="4">
-        <h3 style="margin:0 0 6px">Vuoi aggiungere delle foto?</h3>
-        <p class="sub">Carica le foto qui sotto, resterai su questa pagina.</p>
-        <!-- Badge Codice + Copy + QR -->
-            <div id="codeWrap" class="sub" style="display:none; margin:10px 0 6px;">
-            <span style="font-weight:600;">Codice:</span>
-            <span id="codeView"
-                    style="display:inline-block; padding:.2rem .5rem; border-radius:12px; background:#f1f5f9; border:1px solid #e2e8f0; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">
-            </span>
-            <button type="button" id="copyCode"
-                    class="btn secondary"
-                    style="padding:.25rem .6rem; margin-left:6px;">Copia</button>
-
-            <!-- QR (opzionale): mostrare solo se vuoi -->
-            <img id="codeQR" alt="QR per upload foto"
-                class="hidden"
-                style="display:block; margin-top:8px; width:140px; height:140px; border-radius:8px; border:1px solid #e2e8f0;"/>
+      <!-- FORM principale (testo) verso Google Forms -->
+      <form
+        id="gform"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeiyzJ0qeOlSHkIkJGVZFWgPHZ4s_5w3dlSfdevs2TXCCGHsA/formResponse"
+        method="POST"
+        target="hidden_iframe"
+        novalidate
+      >
+        <!-- STEP 1: Nome e Cognome -->
+        <section class="step active" data-step="1">
+          <div class="row">
+            <div>
+              <label for="nome">Qual è il tuo Nome? *</label>
+              <input
+                id="nome"
+                name="entry.1591633300"
+                type="text"
+                autocomplete="given-name"
+                required
+              />
             </div>
+            <div>
+              <label for="cognome">Qual è il tuo Cognome? *</label>
+              <input
+                id="cognome"
+                name="entry.326955045"
+                type="text"
+                autocomplete="family-name"
+                required
+              />
+            </div>
+          </div>
+          <div class="error" id="err-step1">Inserisci Nome e Cognome.</div>
+          <div class="actions">
+            <button type="button" class="btn secondary" disabled>
+              Indietro
+            </button>
+            <button type="button" class="btn primary" id="next1">Avanti</button>
+          </div>
+        </section>
 
-        <!-- Codice risposta condiviso -->
-        <input type="hidden" id="codiceRisposta" name="entry.1608357523">
+        <!-- STEP 2: Come mi conosci -->
+        <section class="step" data-step="2">
+          <label>Come mi conosci?</label>
+          <label class="radio"
+            ><input type="radio" name="entry.896447326" value="Familiare" />
+            Familiare</label
+          >
+          <label class="radio"
+            ><input type="radio" name="entry.896447326" value="Amico" />
+            Amico</label
+          >
+          <label class="radio"
+            ><input
+              type="radio"
+              name="entry.896447326"
+              value="Non lo so nemmeno io"
+            />
+            Non lo so nemmeno io</label
+          >
+          <label class="radio"
+            ><input
+              type="radio"
+              name="entry.896447326"
+              value="__other_option__"
+              id="optAltro"
+            />
+            Altro</label
+          >
+          <input
+            type="text"
+            id="altroTxt"
+            name="entry.896447326.other_option_response"
+            class="hidden"
+            placeholder="Specifica…"
+          />
+          <input type="hidden" name="entry.896447326_sentinel" />
+          <div class="error" id="err-step2">
+            Scegli un’opzione (specifica “Altro” se selezionato).
+          </div>
+          <div class="actions">
+            <button type="button" class="btn secondary" id="back2">
+              Indietro
+            </button>
+            <button type="button" class="btn primary" id="next2">Avanti</button>
+          </div>
+        </section>
 
-        <!-- Embed del Google Form Foto -->
-        <div id="fotoEmbedWrap" class="embed-wrap hidden" style="width:100%;max-width:720px;margin:12px 0">
-          <iframe id="fotoEmbed"
-                  title="Carica foto"
-                  style="width:100%;height:640px;border:0;border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,.08);"
-                  allow="camera; microphone"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <div id="fotoNotice" class="sub" style="margin-top:8px"></div>
-        </div>
+        <!-- STEP 3: SOLO Messaggio -->
+        <section class="step" data-step="3">
+          <label for="ricordo">Mi lasci un ricordo di stasera?</label>
+          <textarea
+            id="ricordo"
+            name="entry.1696159737"
+            placeholder="Scrivi qualcosa…"
+          ></textarea>
 
-        <!-- Azioni -->
+          <!-- campi tecnici minimi -->
+          <input type="hidden" name="fvv" value="1" />
+          <input type="hidden" name="pageHistory" value="0" />
+
+          <div class="error" id="err-step3"></div>
+          <div class="actions">
+            <button type="button" class="btn secondary" id="back3">
+              Indietro
+            </button>
+            <button type="button" class="btn primary" id="next3">Avanti</button>
+          </div>
+        </section>
+
+        <!-- STEP 4: Foto -->
+        <section class="step" data-step="4">
+        <h3 style="margin: 0 0 6px">Vuoi aggiungere delle foto?</h3>
+        <p class="sub">Si aprirà una piccola finestra per caricare le foto.</p>
+
+        <input type="hidden" id="codiceRisposta" name="entry.1608357523" />
+
         <div class="actions" style="justify-content:flex-start; gap:12px">
-          <a id="btnUpload" class="btn secondary hidden" href="#" rel="noopener">Apri in nuova scheda (fallback)</a>
-          <button type="button" class="btn secondary" id="next4">Ho finito</button>
+            <a id="btnUpload" class="btn secondary hidden" href="#" rel="noopener">Apri in nuova scheda (fallback)</a>
+            <button type="button" class="btn secondary" id="next4">Ho finito</button>
         </div>
+
+        <div id="fotoNotice" class="sub" style="margin-top:8px"></div>
 
         <div class="actions">
-          <button type="button" class="btn secondary" id="back4">Indietro</button>
+            <button type="button" class="btn secondary" id="back4">Indietro</button>
         </div>
-      </section>
+        </section>
 
-      <!-- STEP 5: Riepilogo -->
-      <section class="step" data-step="5">
-        <h3 style="margin:0 0 6px">Riepilogo</h3>
-        <div class="summary" id="summaryBox">
-          <div class="greeting" id="greeting"></div>
-          <div id="summary"></div>
-        </div>
+        <!-- STEP 5: Riepilogo -->
+        <section class="step" data-step="5">
+          <h3 style="margin: 0 0 6px">Riepilogo</h3>
+          <div class="summary" id="summaryBox">
+            <div class="greeting" id="greeting"></div>
+            <div id="summary"></div>
+          </div>
 
-        <div class="actions">
-          <button type="button" class="btn secondary" id="back5">Indietro</button>
-          <button type="submit" class="btn primary" id="btnSubmit">Invia</button>
-        </div>
-      </section>
+          <div class="actions">
+            <button type="button" class="btn secondary" id="back5">
+              Indietro
+            </button>
+            <button type="submit" class="btn primary" id="btnSubmit">
+              Invia
+            </button>
+          </div>
+        </section>
 
-      <!-- STEP 6: Grazie -->
-      <section class="step" data-step="6">
-        <h2 style="margin:0 0 6px">Grazie mille! 🎉</h2>
-        <p class="sub">La tua risposta è stata registrata. Sei una persona speciale 💙</p>
+        <!-- STEP 6: Grazie -->
+        <section class="step" data-step="6">
+          <h2 style="margin: 0 0 6px">Grazie mille! 🎉</h2>
+          <p class="sub">
+            La tua risposta è stata registrata. Sei una persona speciale 💙
+          </p>
 
-        <div class="actions">
-          <button type="button" class="btn secondary" id="backToStart">Compila di nuovo</button>
-          <a class="btn primary" href="bacheca.html">Vai alla bacheca</a>
-        </div>
-      </section>
-    </form>
-
-    <footer>Le tue risposte vengono registrate in modo sicuro tramite Google Forms.</footer>
-  </div>
-
-  <script>
-    (function(){
-      const steps = Array.from(document.querySelectorAll('.step'));
-      const progress = document.getElementById('progress');
-      const form = document.getElementById('gform');
-      const iFrame = document.getElementById('hidden_iframe');
-
-      const err1 = document.getElementById('err-step1');
-      const err2 = document.getElementById('err-step2');
-
-      const optAltro = document.getElementById('optAltro');
-      const altroTxt = document.getElementById('altroTxt');
-
-      const nome = document.getElementById('nome');
-      const cognome = document.getElementById('cognome');
-      const ricordo = document.getElementById('ricordo');
-      const summaryBox = document.getElementById('summaryBox');
-      const greeting = document.getElementById('greeting');
-      const summary = document.getElementById('summary');
-      const codeWrap = document.getElementById('codeWrap');
-        const codeView = document.getElementById('codeView');
-        const copyCodeBtn = document.getElementById('copyCode');
-        const codeQR  = document.getElementById('codeQR');
-        let popupWin = null; // <--- aggiungi questa
-
-
-      // === CHECKER CONFIG ===
-      const CHECK_API = 'https://script.google.com/macros/s/AKfycbx8ADst-84gLSWDFg3TFXsOQHC_cIDqnKAuqVtgv_SvPtrlz_5bUqEu0Wjw0p5EDXs/exec';
-      let openedAtISO = null;   // quando entri nello step 4
-      let pollId = null;        // id del polling
-
-      // Navigazione
-      let current = 0; // indice step (0..5)
-      const total = steps.length; // 6
-
-      function showStep(idx){
-        steps.forEach((s,i)=>s.classList.toggle('active', i===idx));
-        const pct = idx === 0 ? 0 : Math.round((idx / (total-1)) * 100);
-        progress.style.width = pct + '%';
-      }
-      showStep(current);
-
-      // Gestione "Altro"
-      function refreshAltro(){
-        const isAltro = optAltro && optAltro.checked;
-        altroTxt.classList.toggle('hidden', !isAltro);
-        if (!isAltro) altroTxt.value = '';
-      }
-      document.querySelectorAll('input[name="entry.896447326"]').forEach(r=>{
-        r.addEventListener('change', refreshAltro);
-      });
-      refreshAltro();
-
-      // Validazioni step
-      function validateStep1(){
-        const ok = nome.value.trim() && cognome.value.trim();
-        err1.classList.toggle('show', !ok);
-        return ok;
-      }
-      function validateStep2(){
-        const sel = document.querySelector('input[name="entry.896447326"]:checked');
-        if (!sel){ err2.classList.add('show'); return false; }
-        if (sel.value === '__other_option__' && !altroTxt.value.trim()){
-          err2.textContent = 'Specifica il campo “Altro”.';
-          err2.classList.add('show');
-          return false;
-        }
-        err2.textContent = 'Scegli un’opzione (specifica “Altro” se selezionato).';
-        err2.classList.remove('show');
-        return true;
-      }
-
-      // Aggiorna riepilogo (Step 5)
-      function updateSummary(){
-        const sel = document.querySelector('input[name="entry.896447326"]:checked');
-        const conosci = sel ? (sel.value === '__other_option__' ? (altroTxt.value.trim() || 'Altro') : sel.value) : '—';
-        greeting.textContent = nome.value.trim() ? `Grazie ${nome.value.trim()}!` : '';
-        summary.innerHTML = `
-          <div><strong>Nome:</strong> ${nome.value.trim() || '—'}</div>
-          <div><strong>Cognome:</strong> ${cognome.value.trim() || '—'}</div>
-          <div><strong>Come mi conosci:</strong> ${conosci}</div>
-          <div><strong>Ricordo:</strong> ${ricordo.value.trim() || '—'}</div>
-        `;
-        summaryBox.style.display = 'block';
-      }
-
-      // Bottoni Next/Back
-      document.getElementById('next1').addEventListener('click', ()=>{
-        if (!validateStep1()) return;
-        current = 1; showStep(current);
-      });
-      document.getElementById('back2').addEventListener('click', ()=>{
-        current = 0; showStep(current);
-      });
-      document.getElementById('next2').addEventListener('click', ()=>{
-        if (!validateStep2()) return;
-        current = 2; showStep(current);
-      });
-      document.getElementById('back3').addEventListener('click', ()=>{
-        current = 1; showStep(current);
-      });
-
-      // Entrata STEP 4 (Foto)
-      document.getElementById('next3').addEventListener('click', ()=>{
-        // Assicura un codice
-        if (!codiceInput.value) codiceInput.value = makeCode();
-
-        // URL precompilato
-        const url = buildFotoUrl(codiceInput.value); // niente &embedded qui perché usiamo popup
-
-        // Apri in popup (finestra piccola)
-        popupWin = window.open(url, 'upload_foto', 'width=500,height=720,noopener');
-        if (!popupWin) {
-        // se i popup sono bloccati, fallback: apri nella stessa scheda
-        window.location.href = url;
-        }
-
-        // Messaggio nella tua UI
-        const notice = document.getElementById('fotoNotice');
-        if (notice) notice.textContent = 'Carica le foto nella finestra che si è aperta. Ti mostrerò qui la conferma appena arrivano.';
-
-        // Memorizza istante e avvia polling checker
-        openedAtISO = new Date().toISOString();
-        startPolling();
-
-        current = 3; showStep(current);
-
-      });
-
-      // Tasto manuale "Ho finito"
-      document.getElementById('next4').addEventListener('click', async ()=>{
-        await checkPhotosOnce();
-        if (current !== 4) { updateSummary(); current = 4; showStep(current); }
-      });
-
-      document.getElementById('back4').addEventListener('click', ()=>{
-        current = 2; showStep(current);
-      });
-      document.getElementById('back5').addEventListener('click', ()=>{
-        current = 3; showStep(current);
-      });
-      document.getElementById('backToStart').addEventListener('click', ()=>{
-        current = 0; showStep(current);
-      });
-
-      // Invio finale senza lasciare la pagina
-      let submitted = false;
-      let iframeLoads = 0;
-
-      form.addEventListener('submit', (e)=>{
-        e.preventDefault();
-
-        if (!validateStep1()){ current=0; showStep(current); return; }
-        if (!validateStep2()){ current=1; showStep(current); return; }
-
-        if (submitted) return;
-        submitted = true;
-
-        const btn = document.getElementById('btnSubmit');
-        btn.disabled = true; btn.textContent = 'Invio…';
-
-        const t = setTimeout(()=>{
-          if (submitted){
-            submitted = false;
-            btn.disabled = false; btn.textContent = 'Invia';
-          }
-        }, 10000);
-
-        form.submit();
-
-        function onIframeLoad(){
-          iframeLoads++;
-          if (iframeLoads >= 1 && submitted){
-            clearTimeout(t);
-            submitted = false;
-
-            btn.disabled = false;
-            btn.textContent = 'Invia';
-
-            form.reset();
-            refreshAltro();
-            greeting.textContent = '';
-            summary.innerHTML = '';
-            summaryBox.style.display = 'none';
-
-            current = 5; // Step "Grazie"
-            showStep(current);
-          }
-        }
-        iFrame.addEventListener('load', onIframeLoad, { once: true });
-      });
-
-      // Aggiorna riepilogo live quando si scrive
-      ;[nome, cognome, ricordo, altroTxt].forEach(el=>{
-        el.addEventListener('input', ()=>{
-          if (current>=4) updateSummary();
-        });
-      });
-
-      // === FUNZIONI CHECKER (dentro l'IIFE!) ===
-      async function checkPhotosOnce() {
-        const code = (codiceInput.value || '').trim();
-        if (!code) return;
-
-        try {
-          const qs = new URLSearchParams({ code });
-          if (openedAtISO) qs.set('since', openedAtISO);
-
-          const resp = await fetch(`${CHECK_API}?${qs.toString()}`, { method: 'GET' });
-          const data = await resp.json();
-            if (data.ok && data.count > 0) {
-            const notice = document.getElementById('fotoNotice');
-            if (notice) notice.textContent = '✅ Foto caricate! Puoi procedere.';
-            // chiudi la popup se ancora aperta
-            try { if (popupWin && !popupWin.closed) popupWin.close(); } catch (e) {}
-            if (current !== 4) { updateSummary(); current = 4; showStep(current); }
-            stopPolling();
-            }
-        } catch (e) {
-          // console.warn('Checker error', e);
-        }
-      }
-
-      function startPolling() {
-        stopPolling();
-        let elapsed = 0;
-        const STEP_MS = 5000;   // ogni 5s
-        const MAX_MS  = 120000; // per 2 minuti
-
-        pollId = setInterval(async ()=>{
-          elapsed += STEP_MS;
-          await checkPhotosOnce();
-          if (current === 4 || elapsed >= MAX_MS) stopPolling();
-        }, STEP_MS);
-      }
-
-      function stopPolling() {
-        if (pollId) { clearInterval(pollId); pollId = null; }
-      }
-
-      // Riprova quando l’utente torna sulla tab/finestra
-      document.addEventListener('visibilitychange', ()=>{
-        if (document.visibilityState === 'visible') checkPhotosOnce();
-      });
-      window.addEventListener('focus', checkPhotosOnce);
-
-    })();
-
-    // Genera un codice unico
-    function makeCode(){
-      return 'R' + Date.now().toString(36) + Math.random().toString(36).slice(2,8).toUpperCase();
-    }
-
-    // CONFIG Form Foto (PUBLIC /viewform!)
-    const FORM_FOTO_BASE = "https://docs.google.com/forms/d/e/1FAIpQLSckU7HwQlI5B98tI_4O5qIAq4sw5Knh61neyUxs7AZfPES26A/viewform";
-    const ENTRY_CODE_FOTO = "entry.90850929";
-
-    const btnUpload   = document.getElementById('btnUpload');
-    const codiceInput = document.getElementById('codiceRisposta');
-
-    function buildFotoUrl(codice){
-      const p = new URLSearchParams();
-      p.set(ENTRY_CODE_FOTO, codice);
-      return `${FORM_FOTO_BASE}?usp=pp_url&${p.toString()}`;
-    }
-
-    function prepareUploadButton(codice){
-      if (btnUpload) btnUpload.href = buildFotoUrl(codice);
-    }
-  </script>
-</body>
+          <div class="actions">
+            <button type="button" class="btn secondary" id="backToStart">
+              Compila di nuovo
+            </button>
+            <a class="btn primary" href="bacheca.html">Vai alla bacheca</a>
+          </div>
+        </section>
+      </form>
+    </div>
+    <script src="utility.js"></script>
+  </body>
 </html>
