@@ -1,359 +1,366 @@
-/* ====== VARIABILI ====== */
-:root {
-  --bg: #0f172a;
-  --mortar: #0b1224;
-  --paper: #fffdfa;
-  --ink: #0d1b2a;
-  --muted: #5b6472;
-  --text: #e5e7eb;
-  --accent: #22d3ee;
-  --accent-2: #38bdf8;
-  --shadow: 0 12px 30px rgba(10, 10, 10, 0.35);
-  --radius: 18px;
+/* ===============================
+   BACHECA – stile generale
+==================================*/
+
+:root{
+  --wall-bg: #f5f5f0;        /* tinta base muro */
+  --ink: #2b2b2b;            /* testo principale */
+  --muted: #6b6b6b;          /* testo attenuato */
+  --accent: #4466ff10;       /* leggero accento */
+  --paper: #fffdf8;          /* bianco carta polaroid */
+  --paper-edge: #f0ede5;     /* bordo carta */
+  --shadow: 0 8px 22px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  --tape: #f6e7a7cc;         /* “washi” giallino trasparente */
+  --radius: 14px;
 }
 
-/* ====== BASE ====== */
-* {
-  box-sizing: border-box;
+/* Sfondo “muro” con trama leggera (niente immagini esterne) */
+html, body{
+  height: 100%;
 }
-body {
+body{
   margin: 0;
-  background: radial-gradient(
-      1000px 600px at 70% -10%,
-      rgba(34, 211, 238, 0.08),
-      transparent 55%
-    ),
-    radial-gradient(
-      800px 500px at -10% 110%,
-      rgba(56, 189, 248, 0.07),
-      transparent 60%
-    ),
-    var(--bg);
-  color: #e8edf2;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial,
-    sans-serif;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-
-/* ====== HEADER + PILL CONTATORE ====== */
-header {
-  max-width: min(1200px, 92vw);
-  margin: 32px auto 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1em;
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
-  color: #00131a;
-  font-weight: 700;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-/* ====== TOOLBAR / PULSANTI ====== */
-.toolbar {
-  max-width: min(1200px, 92vw);
-  margin: 10px auto 0;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-end;
-}
-.btn {
-  appearance: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  padding: 10px 14px;
-  border-radius: 12px;
-}
-.btn.secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text);
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-.btn.secondary:hover {
-  filter: saturate(1.1);
-}
-
-/* ====== MURO (Masonry a colonne) ====== */
-#wall {
-  max-width: min(1200px, 92vw);
-  margin: 12px auto 48px;
-  column-width: 280px;
-  column-gap: 18px;
-  padding: 6px;
-}
-
-/* ====== CARTOLINA ====== */
-.postcard {
-  display: inline-block;
-  break-inside: avoid;
-  width: 100%;
-  margin: 10px 0;
-  padding: 18px 16px 16px;
   color: var(--ink);
-  border-radius: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: var(--shadow);
-  position: relative;
-  transform: translateZ(0);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-  background: radial-gradient(
-      1px 1px at 20% 30%,
-      rgba(0, 0, 0, 0.06) 0,
-      transparent 100%
-    ),
-    radial-gradient(1px 1px at 80% 70%, rgba(0, 0, 0, 0.04) 0, transparent 100%),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.92),
-      rgba(255, 255, 255, 0.88)
-    ),
-    var(--paper);
-}
-/* washi tape */
-.postcard::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: -10px;
-  transform: translateX(-50%) rotate(calc(var(--r, 0) * 1deg));
-  width: 96px;
-  height: 22px;
-  border-radius: 6px;
-  opacity: 0.9;
-  filter: saturate(1.1);
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(56, 189, 248, 0.45) 0 8px,
-    rgba(34, 211, 238, 0.45) 8px 16px
-  );
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-/* puntina */
-.postcard::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: -2px;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #334155;
-  box-shadow: 0 0 0 2px #e2e8f0, 0 6px 10px rgba(0, 0, 0, 0.25);
-}
-/* leggere rotazioni */
-.postcard {
-  --r: 0;
-}
-.postcard:nth-child(5n + 1) {
-  transform: rotate(-0.6deg);
-  --r: -4;
-}
-.postcard:nth-child(5n + 2) {
-  transform: rotate(0.4deg);
-  --r: 3;
-}
-.postcard:nth-child(5n + 3) {
-  transform: rotate(-0.2deg);
-  --r: -2;
-}
-.postcard:nth-child(5n + 4) {
-  transform: rotate(0.8deg);
-  --r: 5;
-}
-.postcard:nth-child(5n + 5) {
-  transform: rotate(-0.4deg);
-  --r: -3;
-}
-/* hover */
-.postcard:hover {
-  transform: translateY(-2px) rotate(0deg);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
-  filter: saturate(1.02);
-}
-/* varianti carta tenui */
-.postcard:nth-child(6n + 1) {
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 245, 0.92),
-      rgba(255, 255, 245, 0.88)
-    ),
-    var(--paper);
-}
-.postcard:nth-child(6n + 2) {
-  background: linear-gradient(
-      180deg,
-      rgba(250, 255, 252, 0.92),
-      rgba(250, 255, 252, 0.88)
-    ),
-    var(--paper);
-}
-.postcard:nth-child(6n + 3) {
-  background: linear-gradient(
-      180deg,
-      rgba(252, 248, 255, 0.92),
-      rgba(252, 248, 255, 0.88)
-    ),
-    var(--paper);
-}
-.postcard:nth-child(6n + 4) {
-  background: linear-gradient(
-      180deg,
-      rgba(255, 250, 248, 0.92),
-      rgba(255, 250, 248, 0.88)
-    ),
-    var(--paper);
-}
-.postcard:nth-child(6n + 5) {
-  background: linear-gradient(
-      180deg,
-      rgba(248, 252, 255, 0.92),
-      rgba(248, 252, 255, 0.88)
-    ),
-    var(--paper);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background:
+    /* puntinatura delicata */
+    radial-gradient(circle at 25% 15%, #00000005 0 1px, transparent 1px),
+    radial-gradient(circle at 75% 85%, #00000005 0 1px, transparent 1px),
+    /* leggere righe verticali */
+    linear-gradient(90deg, #0000 0, #0000 47.5%, #00000006 50%, #0000 52.5%, #0000 100%),
+    /* tinta base */
+    var(--wall-bg);
+  background-size:
+    18px 18px,
+    18px 18px,
+    28px 28px,
+    auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* contenuti cartolina (stile “seconda versione”) */
-.postcard .msg {
-  white-space: pre-wrap;
-  line-height: 1.45;
-  font-size: 1.02rem;
-  margin-bottom: 14px;
-}
-.postcard .sig {
-  margin-top: 14px;
-  color: var(--muted);
-  font-style: italic;
-  text-align: right;
+.wrap{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
 }
 
-/* ====== STATO VUOTO ====== */
-#empty {
-  max-width: min(960px, 92vw);
-  margin: 80px auto;
-  color: #93abc4;
-  text-align: center;
-  opacity: 0.9;
-}
+/* ===============================
+   Header / topbar / pill
+==================================*/
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 600px) {
-  #wall {
-    column-width: 240px;
-    column-gap: 14px;
-  }
-  .postcard {
-    border-radius: 12px;
-    padding: 16px 14px 14px;
-  }
+header{
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
 }
-
-/* ====== GALLERY BASE ====== */
-.postcard .gallery{
-  display:grid;
-  gap:10px;
-  margin:0 0 12px;
+h1{
+  font-size: clamp(24px, 3.2vw, 38px);
+  margin: 0 0 6px;
+  letter-spacing: .3px;
 }
-
-/* caso: 1 sola foto → occupa tutta la larghezza */
-.postcard .gallery:has(> .ph:only-child){
-  grid-template-columns: 1fr;     /* una colonna sola */
-}
-
-.postcard .gallery:has(> .ph:only-child) .ph{
-  aspect-ratio: 16 / 9;           /* più panoramico */
-}
-
-/* caso: 2 o più foto → layout a griglia */
-.postcard .gallery:not(:has(> .ph:only-child)){
-  grid-template-columns: 1fr 1fr; /* due colonne da tablet in su */
-}
-
-@media (min-width:900px){
-  .postcard .gallery:not(:has(> .ph:only-child)){
-    grid-template-columns: 1fr 1fr; /* puoi aumentare a 3 se vuoi */
-  }
-}
-
-/* riquadro foto */
-.postcard .gallery .ph {
-  position: relative;
-  border-radius: 5px;
-  overflow: hidden; /* nasconde lo sforamento */
-  background: #eef2f7; /* colore di fondo / placeholder */
-  aspect-ratio: 3 / 3; /* rapporto uniforme per le thumb */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+.sub{
   margin: 0;
+  color: var(--muted);
 }
 
-/* immagine che copre il box senza deformarsi */
-.postcard .gallery .ph img {
+.pill{
+  background: #ffffffb8;
+  backdrop-filter: blur(6px);
+  border: 1px solid #00000010;
+  color: #2b2b2b;
+  padding: 8px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  min-width: 110px;
+  text-align: center;
+}
+
+.topbar{
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px 0 18px;
+}
+.btn{
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #00000012;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: transform .06s ease, box-shadow .2s ease;
+  background: #fff;
+  color: #1f1f1f;
+}
+.btn.secondary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.10);
+}
+
+/* ===============================
+   Griglia bacheca
+==================================*/
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+  align-items: start;
+}
+
+.empty{
+  margin: 30px 4px 0;
+  color: var(--muted);
+}
+
+/* ===============================
+   Card come POLAROID
+   - foto in alto, messaggio come didascalia
+   - nastri ai lati
+==================================*/
+
+.postcard{
+  position: relative;
+  overflow: visible;
+  background: var(--paper);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--paper-edge);
+  padding: 14px 14px 16px;
+  transform: rotate(calc(var(--twist, 0deg)));
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.postcard:nth-child(4n){ --twist: -0.6deg; }
+.postcard:nth-child(4n+1){ --twist: 0.4deg; }
+.postcard:nth-child(4n+2){ --twist: -1.2deg; }
+.postcard:nth-child(4n+3){ --twist: 0.9deg; }
+
+.postcard:hover{
+  transform: translateY(-3px) rotate(0deg);
+  box-shadow: 0 14px 30px rgba(0,0,0,.16), 0 4px 10px rgba(0,0,0,.08);
+}
+
+/* NASTRO ADESIVO (lati) */
+.postcard::before,
+.postcard::after{
+  content: "";
   position: absolute;
-  inset: 0;
+  width: 80px;             /* larghezza */
+  height: 26px;            /* altezza */
+  background: var(--tape); /* colore washi / scotch */
+  box-shadow: 0 4px 8px rgba(0,0,0,.2);
+  opacity: .9;
+  pointer-events: none;
+  border-radius: 4px;      /* leggermente stondato */
+}
+.postcard::before{
+  left: -8px;
+  transform: rotate(-2.5deg);
+}
+.postcard::after{
+  right: -8px;
+  transform: rotate(2.5deg);
+}
+
+/* ——— PATTERN 1: due nastri (Top-Right + Bottom-Left) ——— */
+.grid .postcard:nth-child(3n+1)::before{
+  top: -8px;
+  left: -25px;
+  transform: rotate(-25deg);
+}
+.grid .postcard:nth-child(3n+1)::after{
+  bottom: -8px;
+  right: -30px;
+  transform: rotate(-25deg);
+}
+
+/* ——— PATTERN 2: un solo nastro centrato in alto ——— */
+.grid .postcard:nth-child(3n+2)::before{
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 120px;             /* un filo più largo per il top */
+}
+.grid .postcard:nth-child(3n+2)::after{
+  display: none;
+}
+
+/* ——— PATTERN 3: due nastri (Top-Left + Bottom-Right) ——— */
+.grid .postcard:nth-child(3n+3)::before{
+  top: -12px;
+  left: 220px;
+  transform: rotate(30deg);
+}
+.grid .postcard:nth-child(3n+3)::after{
+  bottom: -6px;
+  left: -25px;
+  transform: rotate(30deg);
+}
+
+/* Cornice “polaroid”: più bordo sotto per la didascalia */
+.postcard .gallery{
+  padding: 10px 10px 6px;
+  box-shadow: inset 0 0 0 1px #ffffffcc;
+}
+
+/* Le foto dentro la polaroid: griglia armoniosa */
+.postcard .gallery{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.postcard .gallery:has(.ph:nth-child(1):nth-last-child(1)){
+  /* Se c'è UNA sola immagine, falla “hero” */
+  grid-template-columns: 1fr;
+}
+
+.ph{
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  background: #f3f3ef;
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  border: 1px solid #e8e5de;
+}
+.ph img{
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  transition: transform 0.25s ease, filter 0.25s ease;
+  transition: transform .25s ease;
 }
-.postcard .gallery .ph:hover img {
-  transform: scale(1.02);
-  filter: saturate(1.03);
+.ph img:hover{
+  transform: scale(1.03);
+  cursor: zoom-in;
 }
 
+/* Didascalia (il tuo messaggio) – stile “scrittura a mano” */
+.msg{
+  margin: 10px 6px 0;
+  padding: 8px 6px 4px;
+  color: #2c2c2c;
+  font: 500 16px/1.35 "Segoe Print", "Bradley Hand", "Comic Sans MS", "Chalkboard SE", "Patrick Hand", cursive;
+  text-align: center;
+  min-height: 1lh;
+  /* effetto penna leggero */
+  text-shadow: 0 0 1px #00000010;
+}
 
-/* ====== LIGHTBOX / CAROUSEL ====== */
-#lb {
-  position: fixed; inset: 0; z-index: 9999;
-  display: none; place-items: center;
-  background: rgba(0,0,0,.8);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+/* Data e firma sotto la polaroid */
+.when{
+  margin: 6px 6px 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
 }
-#lb.open { display: grid; }
+.sig{
+  margin: 6px 2px 0;
+  font-size: 14px;
+  text-align: right;
+  color: #3c3c3c;
+  opacity: .9;
+}
 
-#lb .frame {
-  position: relative; width: min(92vw, 1200px); height: min(88vh, 900px);
-  display: grid; place-items: center; overflow: hidden;
+/* ===============================
+   DEBUG (già previsto nell’HTML)
+==================================*/
+#debug{
+  white-space: pre-wrap;
+  font: 12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: #314a1f;
+  background: #ecf6e9;
+  border: 1px dashed #9bc490;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 28px;
 }
-#lb img {
-  max-width: 100%; max-height: 100%;
-  object-fit: contain; user-select: none; -webkit-user-drag: none;
+#debug.err{
+  color: #6b1111;
+  background: #fdecec;
+  border-color: #f2b3b3;
 }
-#lb .ctrl {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  display: grid; place-items: center; width: 48px; height: 48px;
-  border-radius: 999px; background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.2); cursor: pointer;
+
+/* ===============================
+   LIGHTBOX (id="lb")
+==================================*/
+#lb{
+  position: fixed;
+  inset: 0;
+  background: rgba(15,15,20,.82);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
-#lb .prev { left: 10px; }
-#lb .next { right: 10px; }
-#lb .close {
-  position: absolute; top: 10px; right: 10px;
-  width: 44px; height: 44px; border-radius: 999px;
-  display: grid; place-items: center; cursor: pointer;
-  background: rgba(0,0,0,.5); color: #fff; border: 1px solid rgba(255,255,255,.2);
+#lb.open{ display: flex; }
+#lb .frame{
+  position: relative;
+  max-width: min(92vw, 1400px);
+  max-height: 90vh;
+  width: 100%;
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
 }
-#lb .counter {
-  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-  color: #fff; font-weight: 600; font-size: .95rem;
-  background: rgba(0,0,0,.45); padding: 6px 10px; border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.2);
+#lb img{
+  grid-column: 1 / -1;
+  grid-row: 2;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  margin-inline: auto;
 }
-#lb .ctrl:hover, #lb .close:hover { filter: saturate(1.1) }
+#lb .close{
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+}
+#lb .ctrl, #lb .close{
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #ffffffdd;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  cursor: pointer;
+  font-size: 20px;
+}
+#lb .ctrl{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#lb .prev{ left: -6px; }
+#lb .next{ right: -6px; }
+#lb .counter{
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: center;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #fff;
+  background: #00000055;
+  border-radius: 999px;
+}
+
+/* ===============================
+   Responsive fine-tuning
+==================================*/
+
+@media (max-width: 720px){
+  .postcard::before,
+  .postcard::after{
+    width: 64px;
+    height: 22px;
+    box-shadow: 0 3px 8px rgba(0,0,0,.16);
+  }
+  .grid .postcard:nth-child(3n+2)::before{ width: 100px; }
+}
