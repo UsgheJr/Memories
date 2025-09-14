@@ -8,33 +8,41 @@
   --danger: #f87171;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --radius: 18px;
+  --wall-bg: #f5f5f0;        /* tinta base muro */
+  --ink: #2b2b2b;            /* testo principale */
+  --paper: #fffdf8;          /* bianco carta polaroid */
+  --paper-edge: #f0ede5;     /* bordo carta */
+  --tape: #f6e7a7cc;         /* “washi” giallino trasparente */
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
+body{
   margin: 0;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(
-      1200px 600px at 70% -10%,
-      rgba(34, 211, 238, 0.18),
-      transparent 50%
-    ),
-    radial-gradient(
-      900px 500px at -10% 110%,
-      rgba(56, 189, 248, 0.18),
-      transparent 55%
-    ),
-    var(--bg);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
-    Noto Sans, Helvetica, Arial;
-  color: var(--text);
+  color: var(--ink);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background:
+    /* puntinatura delicata */
+    radial-gradient(circle at 25% 15%, #00000005 0 1px, transparent 1px),
+    radial-gradient(circle at 75% 85%, #00000005 0 1px, transparent 1px),
+    /* leggere righe verticali */
+    linear-gradient(90deg, #0000 0, #0000 47.5%, #00000006 50%, #0000 52.5%, #0000 100%),
+    /* tinta base */
+    var(--wall-bg);
+  background-size:
+    18px 18px,
+    18px 18px,
+    28px 28px,
+    auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
-
 .card {
   width: min(680px, 92vw);
   background: linear-gradient(
@@ -62,14 +70,15 @@ p.sub {
   height: 8px;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
+  border: 1px solid lightgray;
   overflow: hidden;
-  margin: 10px 0 22px;
+  margin: 10px 0 15px;
 }
 
 .progress {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: cornflowerblue;
   transition: width 0.35s ease;
 }
 
@@ -95,17 +104,15 @@ p.sub {
 
 label {
   display: block;
-  margin: 14px 0 8px;
   font-size: 0.98rem;
 }
 
 input,
 select,
 textarea {
-  width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgb(0 0 0 / 12%);
   background: rgba(255, 255, 255, 0.02);
   color: var(--text);
   outline: none;
@@ -144,7 +151,8 @@ textarea:focus {
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.2px; 
+  text-decoration: none;
 }
 
 .btn.secondary {
@@ -153,8 +161,8 @@ textarea:focus {
 }
 
 .btn.primary {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  color: #00131a;
+  background: cornflowerblue;
+  color: white;     
 }
 
 .btn[disabled] {
@@ -218,10 +226,7 @@ footer {
 }
 
 .radio {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin: 8px 0;
+    margin: 0;
 }
 
 .ok {
