@@ -23,7 +23,7 @@
     <div id="wall" class="grid"></div>
     <p id="empty" class="empty">Ancora nessun messaggio.</p>
 
-    <div id="debug"></div>
+    <div id="debug" style="display:none;"></div>
   </div>
 
   <script>
@@ -68,13 +68,14 @@
     lb = document.createElement('div');
     lb.id = 'lb';
     lb.innerHTML = `
-        <div class="frame">
+      <div class="frame">
         <button class="close" aria-label="Chiudi" title="Chiudi">✕</button>
         <button class="ctrl prev" aria-label="Precedente" title="Precedente">‹</button>
         <img alt="">
         <button class="ctrl next" aria-label="Successiva" title="Successiva">›</button>
         <div class="counter">1/1</div>
-        </div>
+        <a class="open" target="_blank" rel="noopener" style="position:absolute;right:56px;top:12px;padding:6px 10px;border-radius:8px;background:#000a;color:#fff;text-decoration:none;font:500 14px/1.1 system-ui">Apri su Drive ▶</a>
+      </div>
     `;
     document.body.appendChild(lb);
 
@@ -123,6 +124,17 @@
     return u;
     }
 
+    // Dato un URL thumbnail di Drive, ricava l'URL /file/ID/preview
+    function drivePreviewFromThumb(u){
+      try{
+        const url = new URL(u);
+        const id = url.searchParams.get('id');
+        if (id) return `https://drive.google.com/file/d/${id}/preview`;
+      }catch{}
+      return null;
+    }
+
+
     function openLightbox(photos, startIdx=0){
     const lb = ensureLightbox();
     lb._photos = photos.map(u => upscaleThumb(u, 3000));
@@ -144,12 +156,19 @@
     }
 
     function updateLightbox(){
-    const lb = ensureLightbox();
-    const img = lb.querySelector('img');
-    img.src = lb._photos[lb._idx];
-    lb.querySelector('.counter').textContent = `${lb._idx+1}/${lb._photos.length}`;
-    }
+      const lb = ensureLightbox();
+      const img = lb.querySelector('img');
+      const hrefEl = lb.querySelector('a.open');
 
+      const current = lb._photos[lb._idx];
+      img.src = current;
+
+      const preview = drivePreviewFromThumb(current);
+      hrefEl.href = preview || current;           // se è una thumb Drive → /preview; altrimenti usa l’URL stesso
+      hrefEl.title = "Apri in una nuova scheda";  // hint
+
+      lb.querySelector('.counter').textContent = `${lb._idx+1}/${lb._photos.length}`;
+    }
 
     // Parser robusto per date italiane "dd/mm/yyyy hh:mm[:ss]"
     function parseItalianDate(s){
