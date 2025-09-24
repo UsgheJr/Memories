@@ -88,16 +88,9 @@
     return true;
   }
   function updateSummary(){
-    const sel = document.querySelector('input[name="entry.896447326"]:checked');
-    const conosci = sel ? (sel.value === '__other_option__' ? (altroTxt.value.trim() || 'Altro') : sel.value) : '—';
-    if (greeting) greeting.textContent = nome.value.trim() ? `Grazie ${nome.value.trim()}!` : '';
-    if (summary) summary.innerHTML = `
-      <div><strong>Nome:</strong> ${nome.value.trim() || '—'}</div>
-      <div><strong>Cognome:</strong> ${cognome.value.trim() || '—'}</div>
-      <div><strong>Come mi conosci:</strong> ${conosci}</div>
-      <div><strong>Ricordo:</strong> ${ricordo.value.trim() || '—'}</div>
-    `;
-    if (summaryBox) summaryBox.style.display = 'block';
+    greeting.textContent = nome.value.trim()
+      ? `Grazie ${nome.value.trim()} per avermi dedicato il tuo tempo 💙`
+      : '';
   }
 
   // ====== FLOW ======
@@ -163,10 +156,7 @@
       if (iframeLoads >= 1 && submitted){
         clearTimeout(t); submitted=false;
         if (btn){ btn.disabled=false; btn.textContent='Invia'; }
-        form.reset(); refreshAltro();
         if (greeting) greeting.textContent='';
-        if (summary) summary.innerHTML='';
-        if (summaryBox) summaryBox.style.display='none';
         current=5; showStep(current);
       }
     }
