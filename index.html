@@ -13,12 +13,6 @@
 
     <!-- Barra di progresso -->
     <div class="progress-wrap"><div class="progress" id="progress" style="width:0%"></div></div>
-    <a class="btn primary" style="display: flex; 
-      justify-self: center;
-      margin-bottom: 10px;"
-      href="bacheca.html">
-      Vai alla bacheca
-    </a>
     <!-- IFRAME nascosto per il POST al Form -->
     <iframe name="hidden_iframe" id="hidden_iframe" class="hidden"></iframe>
 
@@ -41,6 +35,7 @@
         </div>
         <div class="error" id="err-step1">Inserisci Nome e Cognome.</div>
         <div class="actions">
+          <a class="btn primary" href="bacheca.html">Vai alla bacheca</a>
           <button type="button" class="btn secondary" disabled>Indietro</button>
           <button type="button" class="btn primary" id="next1">Avanti</button>
         </div>
@@ -122,12 +117,15 @@
 
       <!-- STEP 5: Riepilogo -->
       <section class="step" data-step="5">
-        <div class="greeting" id="greeting"></div>
+        <h3 style="margin:0 0 6px">Conferma</h3>
+        <p class="sub" id="confirmMsg"></p>
+
         <div class="actions">
           <button type="button" class="btn secondary" id="back5">Indietro</button>
           <button type="submit" class="btn primary" id="btnSubmit">Invia</button>
         </div>
       </section>
+
 
       <!-- STEP 6: Grazie -->
       <section class="step" data-step="6">
@@ -165,7 +163,7 @@
       const nome = document.getElementById('nome');
       const cognome = document.getElementById('cognome');
       const ricordo = document.getElementById('ricordo');
-      const greeting = document.getElementById('greeting');
+      const confirmMsg = document.getElementById('confirmMsg');
 
       // Navigazione
       let current = 0; // indice step (0..5)
@@ -214,11 +212,10 @@
       // Aggiorna riepilogo (Step 5)
       function updateSummary(){
         const nomeClean = nome.value.trim();
-        greeting.textContent = nomeClean
-          ? `Grazie ${nomeClean} per avermi dedicato il tuo tempo`
-          : '';
+        confirmMsg.textContent = nomeClean
+          ? `Ok ${nomeClean}, se per te è tutto giusto premi “Invia”.`
+          : 'Se è tutto giusto, premi “Invia”.';
       }
-
 
       // Bottoni Next/Back
       document.getElementById('next1').addEventListener('click', ()=>{
@@ -327,7 +324,6 @@
             // Pulizia form
             form.reset();
             refreshAltro();
-            greeting.textContent = '';
 
             // Vai alla schermata di ringraziamento (Step 6)
             current = 5;
