@@ -355,12 +355,56 @@ h1{
    Responsive fine-tuning
 ==================================*/
 
+/* ===============================
+   Responsive fine-tuning (Mobile)
+==================================*/
 @media (max-width: 720px){
+  /* dimensioni più compatte del nastro su mobile */
   .postcard::before,
   .postcard::after{
-    width: 64px;
-    height: 22px;
+    --tape-w: 82px;
+    --tape-h: 22px;
+    width: var(--tape-w);
+    height: var(--tape-h);
     box-shadow: 0 3px 8px rgba(0,0,0,.16);
+    left: auto;  /* evita offset orfani */
+    right: auto; /* evita offset orfani */
   }
-  .grid .postcard:nth-child(3n+2)::before{ width: 100px; }
+
+  /* ===== Pattern 1 (3n+1) – due nastri: top e bottom centrati ===== */
+  .grid .postcard:nth-child(3n+1)::before{
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-8deg);
+  }
+  .grid .postcard:nth-child(3n+1)::after{
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(8deg);
+  }
+
+  /* ===== Pattern 2 (3n+2) – singolo nastro centrato in alto ===== */
+  .grid .postcard:nth-child(3n+2)::before{
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: calc(var(--tape-w) + 24px); /* leggermente più largo */
+  }
+  .grid .postcard:nth-child(3n+2)::after{
+    display: none;
+  }
+
+  /* ===== Pattern 3 (3n+3) – due nastri agli angoli interni ===== */
+  .grid .postcard:nth-child(3n+3)::before{
+    top: -2px;
+    left: 18rem;
+    transform: rotate(30deg);
+    width: var(--tape-w);
+  }
+  .grid .postcard:nth-child(3n+3)::after{
+    bottom: -10px;
+    right: 12px;               /* vicino all’angolo destro */
+    transform: rotate(30deg);
+    width: var(--tape-w);
+  }
 }
