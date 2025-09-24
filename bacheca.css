@@ -190,9 +190,9 @@ h1{
 
 /* ——— PATTERN 3: due nastri (Top-Left + Bottom-Right) ——— */
 .grid .postcard:nth-child(3n+3)::before{
-  top: -12px;
-  left: 220px;
-  transform: rotate(30deg);
+  top: 0em;
+  left: 14em;
+  transform: rotate(38deg);
 }
 .grid .postcard:nth-child(3n+3)::after{
   bottom: -6px;
